@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class CalendarService implements ICalendarUseCase {
 
-    @Autowired
+
     private ICalendarUseCase calendarUseCase;
 
     @Override

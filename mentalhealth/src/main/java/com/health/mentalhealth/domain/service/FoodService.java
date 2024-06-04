@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class FoodService implements IFoodUseCase {
 
-    @Autowired
+
     private IFoodUseCase foodUseCase;
 
     @Override

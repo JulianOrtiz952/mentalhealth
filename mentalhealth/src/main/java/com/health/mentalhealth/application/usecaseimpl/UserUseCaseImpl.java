@@ -3,6 +3,7 @@ package com.health.mentalhealth.application.usecaseimpl;
 import com.health.mentalhealth.domain.persistence.entity.UserEntity;
 import com.health.mentalhealth.domain.persistence.ports.in.IUserUseCase;
 import com.health.mentalhealth.infrastructure.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import java.util.Optional;
 public class UserUseCaseImpl implements IUserUseCase {
 
     //repository
+    @Autowired
     private UserRepository userRepository;
 
     //Find user use case implementation

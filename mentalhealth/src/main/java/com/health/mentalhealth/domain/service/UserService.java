@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public class UserService implements IUserUseCase {
 
-    @Autowired
+
     private IUserUseCase userUseCase;
 
     @Override

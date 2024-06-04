@@ -11,7 +11,6 @@ import java.util.Optional;
 @Service
 public class AlarmService implements IAlarmUseCase {
 
-    @Autowired
     private IAlarmUseCase alarmUseCase;
 
     @Override

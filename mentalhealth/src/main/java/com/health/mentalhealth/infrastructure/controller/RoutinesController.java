@@ -28,6 +28,11 @@ public class RoutinesController {
         return ResponseEntity.ok(routinesService.findByName(name));
     }
 
+    @GetMapping("/names")
+    public ResponseEntity<?> getAllRoutineName(){
+        return ResponseEntity.ok(routinesService.findAllRoutinesName());
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id){
         routinesService.deleteRoutines(id);

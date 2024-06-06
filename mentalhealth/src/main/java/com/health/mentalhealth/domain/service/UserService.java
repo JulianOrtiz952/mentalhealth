@@ -1,4 +1,5 @@
 package com.health.mentalhealth.domain.service;
+import com.health.mentalhealth.application.exception.NotFoundedException;
 import com.health.mentalhealth.application.exception.RequestException;
 import com.health.mentalhealth.domain.persistence.entity.UserEntity;
 import com.health.mentalhealth.infrastructure.repository.UserRepository;
@@ -22,13 +23,13 @@ public class UserService {
 
 
     public void deleteUser(Long id) {
-        if(!userRepository.existsById(id)) throw new RequestException("404","user doesn't exist :(");
+        if(!userRepository.existsById(id)) throw new NotFoundedException();
         userRepository.deleteById(id);
     }
 
 
     public Optional<UserEntity> getUser(Long id) {
-        if(!userRepository.existsById(id)) throw new RequestException("404","user doesn't exist :(");
+        if(!userRepository.existsById(id)) throw new NotFoundedException();
         return userRepository.findById(id);
     }
 
@@ -38,7 +39,7 @@ public class UserService {
     }
 
     public UserEntity updateUser(UserEntity user){
-        if(!userRepository.existsById(user.getId())) throw new RequestException("404","user doesn't exist :(");
+        if(!userRepository.existsById(user.getId())) throw new NotFoundedException();
         else return userRepository.save(user);
     }
 }

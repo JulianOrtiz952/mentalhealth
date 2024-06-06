@@ -21,8 +21,16 @@ public class Routines {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Day is a String how monday...
+    private String day;
+
+    //Hour double need be rounded
+    private double hour;
+
+    //name and info about routine
     private String name;
-    private String type;
+    private String info;
+    private int duration;
 
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)

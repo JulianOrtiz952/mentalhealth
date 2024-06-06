@@ -1,5 +1,6 @@
 package com.health.mentalhealth.domain.service;
 
+import com.health.mentalhealth.application.exception.NotFoundedException;
 import com.health.mentalhealth.application.exception.RequestException;
 import com.health.mentalhealth.domain.persistence.entity.Calendar;
 import com.health.mentalhealth.domain.persistence.ports.in.ICalendarUseCase;
@@ -25,13 +26,13 @@ public class CalendarService implements ICalendarUseCase {
 
     @Override
     public void deleteCalendar(Long id) {
-        if(!calendarUseCase.existsById(id)) throw new RequestException("404","calendar doesn't exist :(");
+        if(!calendarUseCase.existsById(id)) throw new NotFoundedException();
         calendarUseCase.deleteById(id);
     }
 
     @Override
     public Optional<Calendar> getCalendar(Long id) {
-        if(!calendarUseCase.existsById(id)) throw new RequestException("404","calendar doesn't exist :(");
+        if(!calendarUseCase.existsById(id)) throw new NotFoundedException();
         return calendarUseCase.findById(id);
     }
 

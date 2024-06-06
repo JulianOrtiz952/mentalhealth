@@ -8,8 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Entity
 @Data
 @Builder
@@ -23,13 +21,15 @@ public class Alarms {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Date Time;
+    private String day;
+    private double time;
 
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
     @JsonIgnore
     private UserEntity user;
 
+    // Agregado setter público para la propiedad 'user'
     @JsonProperty("user") // Anotación de Jackson para deserialización
     public void setUser(UserEntity user) {
         this.user = user;

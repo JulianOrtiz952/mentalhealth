@@ -1,5 +1,6 @@
 package com.health.mentalhealth.domain.service;
 
+import com.health.mentalhealth.application.exception.RequestException;
 import com.health.mentalhealth.application.usecaseimpl.AlarmsUseCaseImpl;
 import com.health.mentalhealth.domain.persistence.entity.Alarms;
 import com.health.mentalhealth.domain.persistence.ports.in.IAlarmUseCase;
@@ -26,12 +27,14 @@ public class AlarmService implements IAlarmUseCase {
     @Override
     public void deleteAlarmById(Long id) {
         // Implementación del método
+        if(!alarmRepository.existsById(id)) throw new RequestException("404","alarm doesn't exist :(");
         alarmRepository.deleteById(id);
     }
 
     @Override
     public Optional<Alarms> getAlarmById(Long id) {
         // Implementación del método
+        if(!alarmRepository.existsById(id)) throw new RequestException("404","alarm doesn't exist :(");
         return alarmRepository.findById(id);
     }
 

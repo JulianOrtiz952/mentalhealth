@@ -1,5 +1,6 @@
 package com.health.mentalhealth.domain.service;
 
+import com.health.mentalhealth.application.exception.RequestException;
 import com.health.mentalhealth.domain.persistence.entity.Food;
 import com.health.mentalhealth.domain.persistence.ports.in.IFoodUseCase;
 import com.health.mentalhealth.infrastructure.repository.AlarmRepository;
@@ -24,11 +25,13 @@ public class FoodService implements IFoodUseCase {
 
     @Override
     public void deleteFood(Long id) {
+        if(!foodUseCase.existsById(id)) throw new RequestException("404","food doesn't exist :(");
         foodUseCase.deleteById(id);
     }
 
     @Override
     public Optional<Food> getFoodById(Long id) {
+        if(!foodUseCase.existsById(id)) throw new RequestException("404","food doesn't exist :(");
         return foodUseCase.findById(id);
     }
 

@@ -34,4 +34,8 @@ public class RoutinesService implements IRoutinesUseCase {
     public List<Routines> getAllRoutines() {
         return (List<Routines>) routinesUseCase.findAll();
     }
+
+    public List<Routines> findByName(String name){
+        return (List<Routines>) routinesUseCase.findRoutinesByName(name);
+    }
 }

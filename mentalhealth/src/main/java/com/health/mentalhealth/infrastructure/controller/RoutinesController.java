@@ -23,6 +23,11 @@ public class RoutinesController {
         return ResponseEntity.ok(routinesService.getAllRoutines());
     }
 
+    @GetMapping("/name")
+    public ResponseEntity<?> getRoutineByName(@RequestBody String name){
+        return ResponseEntity.ok(routinesService.findByName(name));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id){
         routinesService.deleteRoutines(id);
@@ -33,5 +38,7 @@ public class RoutinesController {
     public ResponseEntity<?> createRoutine(@RequestBody Routines routines){
         return ResponseEntity.ok(routinesService.createRoutines(routines));
     }
+
+
 
 }

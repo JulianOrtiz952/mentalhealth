@@ -12,27 +12,26 @@ import java.util.Optional;
 @Service
 public class RoutinesService implements IRoutinesUseCase {
 
-
-    private IRoutinesUseCase routinesUseCase;
-
+    @Autowired
+    private RoutinesRepository routinesUseCase;
 
     @Override
     public Routines createRoutines(Routines routines) {
-        return routinesUseCase.createRoutines(routines);
+        return routinesUseCase.save(routines);
     }
 
     @Override
     public void deleteRoutines(Long id) {
-        routinesUseCase.deleteRoutines(id);
+        routinesUseCase.deleteById(id);
     }
 
     @Override
     public Optional<Routines> getRoutinesById(Long id) {
-        return routinesUseCase.getRoutinesById(id);
+        return routinesUseCase.findById(id);
     }
 
     @Override
     public List<Routines> getAllRoutines() {
-        return routinesUseCase.getAllRoutines();
+        return (List<Routines>) routinesUseCase.findAll();
     }
 }

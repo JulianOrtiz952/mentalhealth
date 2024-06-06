@@ -1,7 +1,10 @@
 package com.health.mentalhealth.domain.service;
 
+import com.health.mentalhealth.application.usecaseimpl.AlarmsUseCaseImpl;
 import com.health.mentalhealth.domain.persistence.entity.Alarms;
 import com.health.mentalhealth.domain.persistence.ports.in.IAlarmUseCase;
+import com.health.mentalhealth.infrastructure.repository.AlarmRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,25 +14,30 @@ import java.util.Optional;
 @Service
 public class AlarmService implements IAlarmUseCase {
 
-    private IAlarmUseCase alarmUseCase;
+    @Autowired
+    private AlarmRepository alarmRepository;
 
     @Override
     public Alarms createAlarm(Alarms alarms) {
-        return alarmUseCase.createAlarm(alarms);
+        // Implementación del método
+        return alarmRepository.save(alarms);
     }
 
     @Override
     public void deleteAlarmById(Long id) {
-        alarmUseCase.deleteAlarmById(id);
+        // Implementación del método
+        alarmRepository.deleteById(id);
     }
 
     @Override
     public Optional<Alarms> getAlarmById(Long id) {
-        return alarmUseCase.getAlarmById(id);
+        // Implementación del método
+        return alarmRepository.findById(id);
     }
 
     @Override
     public List<Alarms> getAllAlarms() {
-        return alarmUseCase.getAllAlarms();
+        // Implementación del método
+        return (List<Alarms>) alarmRepository.findAll();
     }
 }

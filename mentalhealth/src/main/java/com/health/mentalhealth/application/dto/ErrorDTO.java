@@ -1,4 +1,4 @@
-package com.health.mentalhealth.domain.persistence.dto;
+package com.health.mentalhealth.application.dto;
 
 import lombok.Builder;
 import lombok.Data;

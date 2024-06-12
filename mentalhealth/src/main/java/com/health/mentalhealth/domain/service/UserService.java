@@ -1,8 +1,8 @@
 package com.health.mentalhealth.domain.service;
 import com.health.mentalhealth.application.exception.NotFoundedException;
 import com.health.mentalhealth.application.exception.RequestException;
+import com.health.mentalhealth.domain.persistence.dao.idao.IUserDAO;
 import com.health.mentalhealth.domain.persistence.entity.UserEntity;
-import com.health.mentalhealth.infrastructure.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,33 +13,34 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserDAO userDAO;
 
 
     public UserEntity createUser(UserEntity user) {
         if(user.getEmail().isEmpty() ||  user.getPassword().isEmpty()) throw new RequestException("401", "email or password required");
-        return userRepository.save(user);
+        userDAO.save(user);
+        return user;
     }
 
 
     public void deleteUser(Long id) {
-        if(!userRepository.existsById(id)) throw new NotFoundedException();
-        userRepository.deleteById(id);
+        if(userDAO.findById(id).isEmpty()) throw new NotFoundedException();
+        userDAO.deleteById(id);
     }
 
 
     public Optional<UserEntity> getUser(Long id) {
-        if(!userRepository.existsById(id)) throw new NotFoundedException();
-        return userRepository.findById(id);
+        if(userDAO.findById(id).isEmpty()) throw new NotFoundedException();
+        return userDAO.findById(id);
     }
 
 
     public List<UserEntity> getAllUser() {
-        return (List<UserEntity>) userRepository.findAll();
+        return (List<UserEntity>) userDAO.findAll();
     }
 
-    public UserEntity updateUser(UserEntity user){
-        if(!userRepository.existsById(user.getId())) throw new NotFoundedException();
-        else return userRepository.save(user);
+    public void updateUser(UserEntity user){
+        if(userDAO.findById(user.getId()).isEmpty()) throw new NotFoundedException();
+        else userDAO.save(user);
     }
 }

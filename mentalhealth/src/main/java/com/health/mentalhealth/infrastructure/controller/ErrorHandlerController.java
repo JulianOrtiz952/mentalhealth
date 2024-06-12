@@ -2,7 +2,7 @@ package com.health.mentalhealth.infrastructure.controller;
 
 import com.health.mentalhealth.application.exception.NotFoundedException;
 import com.health.mentalhealth.application.exception.RequestException;
-import com.health.mentalhealth.domain.persistence.dto.ErrorDTO;
+import com.health.mentalhealth.application.dto.ErrorDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

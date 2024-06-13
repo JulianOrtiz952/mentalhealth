@@ -1,5 +1,6 @@
 package com.health.mentalhealth.infrastructure.controller;
 
+import com.health.mentalhealth.application.dto.LoginDTO;
 import com.health.mentalhealth.domain.persistence.entity.UserEntity;
 import com.health.mentalhealth.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class UserController {
     //Create user
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody UserEntity user){
+
         return ResponseEntity.ok(userService.createUser(user));
     }
 
@@ -40,6 +42,11 @@ public class UserController {
     @GetMapping
     public ResponseEntity<?> getAllUser(){
         return ResponseEntity.ok(userService.getAllUser());
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO){
+        return ResponseEntity.ok(userService.login(loginDTO.getEmail(), loginDTO.getPassword()));
     }
 
 }

@@ -16,6 +16,7 @@ public interface IUserDAO {
     void deleteById(long id);
 
 
+    Optional<UserEntity> findUserByEmail(String email);
 
 
 }

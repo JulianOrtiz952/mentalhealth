@@ -35,4 +35,11 @@ public class UserDAOImpl implements IUserDAO {
     public void deleteById(long id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<UserEntity> findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
+
 }

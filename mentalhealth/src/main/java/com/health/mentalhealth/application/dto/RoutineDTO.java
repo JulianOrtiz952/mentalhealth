@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class RoutineDTO {
 
     //Routine data transfer object to frontend
-    private Long id;
 
     //Day is a String how monday...
     private String day;

@@ -43,7 +43,7 @@ public class UserService {
 
     //stream, map and toList allow to create a DTO list
     public List<UserDTO> getAllUser() {
-        return userDAO.findAll().stream().map(user -> UserDTO.builder().id(user.getId()).name(user.getName()).email(user.getEmail()).phone(user.getPhone()).build()).toList();
+        return userDAO.findAll().stream().map(user -> UserDTO.builder().id(user.getId()).name(user.getName()).phone(user.getPhone()).build()).toList();
     }
 
     //method to login, if is valid the password and the email return true

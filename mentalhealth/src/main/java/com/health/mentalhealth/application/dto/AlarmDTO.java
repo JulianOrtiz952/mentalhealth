@@ -15,5 +15,6 @@ public class AlarmDTO {
     private String name;
     private int day;
     private double time;
+    private String message;
 
 }

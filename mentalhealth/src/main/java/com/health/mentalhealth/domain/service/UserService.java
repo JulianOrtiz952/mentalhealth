@@ -22,8 +22,7 @@ public class UserService {
         if(user.getEmail().isEmpty() ||  user.getPassword().isEmpty()) throw new RequestException("401", "email or password required");
         if(userDAO.findUserByEmail(user.getEmail()).isPresent()) throw new EmailAlreadyExistException("email is linked in another account");
         userDAO.save(user);
-        UserDTO userDTO = UserDTO.builder().id(user.getId()).name(user.getName()).phone(user.getPhone()).email(user.getEmail()).build();
-        return userDTO;
+        return UserDTO.builder().id(user.getId()).name(user.getName()).phone(user.getPhone()).email(user.getEmail()).build();
     }
 
     public void deleteUser(Long id) {
@@ -33,14 +32,12 @@ public class UserService {
 
     public UserDTO getUser(Long id) {
         if(userDAO.findById(id).isEmpty()) throw new NotFoundedException();
-        Optional<UserEntity> userEntity = userDAO.findById(id);
-        UserEntity user = userEntity.get();
+        UserEntity user = userDAO.findById(id).get();
         return UserDTO.builder().id(user.getId()).name(user.getName()).build();
     }
 
     public List<UserDTO> getAllUser() {
-        List<UserDTO> userDTOList = userDAO.findAll().stream().map(user -> UserDTO.builder().id(user.getId()).name(user.getName()).email(user.getEmail()).phone(user.getPhone()).build()).toList();
-        return userDTOList;
+        return userDAO.findAll().stream().map(user -> UserDTO.builder().id(user.getId()).name(user.getName()).email(user.getEmail()).phone(user.getPhone()).build()).toList();
     }
 
     public void updateUser(UserEntity user){

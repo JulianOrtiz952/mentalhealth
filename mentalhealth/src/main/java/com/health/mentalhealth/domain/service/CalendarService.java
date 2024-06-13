@@ -1,5 +1,7 @@
 package com.health.mentalhealth.domain.service;
 
+import com.health.mentalhealth.application.dto.CalendarDTO;
+import com.health.mentalhealth.application.exception.EmptyException;
 import com.health.mentalhealth.application.exception.NotFoundedException;
 import com.health.mentalhealth.domain.persistence.dao.idao.ICalendarDAO;
 import com.health.mentalhealth.domain.persistence.entity.Calendar;
@@ -17,9 +19,11 @@ public class CalendarService {
     private ICalendarDAO calendarDAO;
 
 
-    public Calendar createCalendar(Calendar calendar) {
+    public CalendarDTO createCalendar(Calendar calendar) {
+        YearMonthDay yearMonthDay = new YearMonthDay();
+        if(yearMonthDay.validation(calendar.getYear(), calendar.getMonth(), calendar.getDay()))
         calendarDAO.save(calendar);
-        return calendar;
+        return CalendarDTO.builder().id(calendar.getId()).year(calendar.getYear()).day(calendar.getDay()).month(calendar.getMonth()).info(calendar.getInfo()).build();
     }
 
 
@@ -29,13 +33,14 @@ public class CalendarService {
     }
 
 
-    public Optional<Calendar> getCalendar(Long id) {
+    public CalendarDTO getCalendar(Long id) {
         if(calendarDAO.findById(id).isEmpty()) throw new NotFoundedException();
-        return calendarDAO.findById(id);
+        Calendar calendar = calendarDAO.findById(id).get();
+        return CalendarDTO.builder().year(calendar.getYear()).month(calendar.getMonth()).day(calendar.getDay()).info(calendar.getInfo()).build();
     }
 
-
-    public List<Calendar> getAllCalendar() {
-        return (List<Calendar>) calendarDAO.findAll();
+    public List<CalendarDTO> getAllCalendar() {
+        return calendarDAO.findAll().stream().map(calendar -> CalendarDTO.builder().id(calendar.getId()).year(calendar.getYear()).month(calendar.getMonth()).day(calendar.getDay()).info(calendar.getInfo()).build()).toList();
     }
+
 }

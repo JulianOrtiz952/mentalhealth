@@ -1,6 +1,7 @@
 package com.health.mentalhealth.infrastructure.controller;
 
 import com.health.mentalhealth.application.exception.EmailAlreadyExistException;
+import com.health.mentalhealth.application.exception.EmptyException;
 import com.health.mentalhealth.application.exception.NotFoundedException;
 import com.health.mentalhealth.application.exception.RequestException;
 import com.health.mentalhealth.application.dto.ErrorDTO;
@@ -25,6 +26,12 @@ public class ErrorHandlerController {
 
     @ExceptionHandler(value = EmailAlreadyExistException.class)
     public ResponseEntity<ErrorDTO> emailAlreadyExistException(EmailAlreadyExistException er){
+        ErrorDTO error = ErrorDTO.builder().code(er.getCode()).message(er.getMessage()).build();
+        return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(value = EmptyException.class)
+    public ResponseEntity<ErrorDTO> emptyException(EmptyException er){
         ErrorDTO error = ErrorDTO.builder().code(er.getCode()).message(er.getMessage()).build();
         return ResponseEntity.badRequest().body(error);
     }

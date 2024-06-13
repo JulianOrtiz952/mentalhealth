@@ -21,7 +21,7 @@ public class Alarms {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String day;
+    private int day;
     private double time;
 
     @ManyToOne

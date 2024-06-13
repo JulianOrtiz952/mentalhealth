@@ -19,7 +19,7 @@ public class AlarmService {
 
     public Alarms createAlarm(Alarms alarms) {
         // Implementación del método
-        if(alarmDAO.findAlarmByDayAndTime(alarms.getDay(), alarms.getTime()).isPresent()) throw new RequestException("401", "alarm already exist");
+        if(alarmDAO.findAlarmByDayAndTime(String.valueOf(alarms.getDay()), alarms.getTime()).isPresent()) throw new RequestException("401", "alarm already exist");
         alarmDAO.save(alarms);
         return alarms;
     }

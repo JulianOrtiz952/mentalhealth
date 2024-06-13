@@ -21,8 +21,9 @@ public class Calendar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String day;
-    private String name;
+    private int year;
+    private int month;
+    private int day;
     private String info;
 
     @ManyToOne

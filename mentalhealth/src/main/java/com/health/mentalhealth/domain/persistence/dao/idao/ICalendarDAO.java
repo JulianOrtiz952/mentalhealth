@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface ICalendarDAO {
 
+    //interface data access object with methods
     Optional<Calendar> findById(long id);
 
     List<Calendar> findAll();

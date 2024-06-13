@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginDTO {
 
+    //Login data transfer object to validation
     private String email;
     private String password;
 

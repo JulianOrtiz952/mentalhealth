@@ -18,12 +18,13 @@ public class CalendarService {
     @Autowired
     private ICalendarDAO calendarDAO;
 
+    //DTO have a lombok annotation 'builder', is used from send only necessary info
 
     public CalendarDTO createCalendar(Calendar calendar) {
         YearMonthDay yearMonthDay = new YearMonthDay();
         if(yearMonthDay.validation(calendar.getYear(), calendar.getMonth(), calendar.getDay()))
         calendarDAO.save(calendar);
-        return CalendarDTO.builder().id(calendar.getId()).year(calendar.getYear()).day(calendar.getDay()).month(calendar.getMonth()).info(calendar.getInfo()).build();
+        return CalendarDTO.builder().year(calendar.getYear()).day(calendar.getDay()).month(calendar.getMonth()).info(calendar.getInfo()).build();
     }
 
 
@@ -39,8 +40,10 @@ public class CalendarService {
         return CalendarDTO.builder().year(calendar.getYear()).month(calendar.getMonth()).day(calendar.getDay()).info(calendar.getInfo()).build();
     }
 
+    //stream, map and toList allow to create a DTO list
+
     public List<CalendarDTO> getAllCalendar() {
-        return calendarDAO.findAll().stream().map(calendar -> CalendarDTO.builder().id(calendar.getId()).year(calendar.getYear()).month(calendar.getMonth()).day(calendar.getDay()).info(calendar.getInfo()).build()).toList();
+        return calendarDAO.findAll().stream().map(calendar -> CalendarDTO.builder().year(calendar.getYear()).month(calendar.getMonth()).day(calendar.getDay()).info(calendar.getInfo()).build()).toList();
     }
 
 }

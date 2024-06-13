@@ -24,7 +24,6 @@ public class Routines {
     //Day is a String how monday...
     private String day;
 
-    //Hour double need be rounded
     private double hour;
 
     //name and info about routine
@@ -37,7 +36,7 @@ public class Routines {
     @JsonIgnore
     private UserEntity user;
 
-    // Agregado setter público para la propiedad 'user'
+    // add public setter to 'user' property
     @JsonProperty("user") // Anotación de Jackson para deserialización
     public void setUser(UserEntity user) {
         this.user = user;

@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface IAlarmDAO {
 
+    //interface data access object with methods
+
     Optional<Alarms> findById(long id);
 
     List<Alarms> findAll();
@@ -15,6 +17,8 @@ public interface IAlarmDAO {
 
     void deleteById(long id);
 
-    Optional<Alarms> findAlarmByDayAndTime(String day, double time);
+    //method with repository query
+
+    Optional<Alarms> findAlarmByDayAndTime(int day, double time);
 
 }

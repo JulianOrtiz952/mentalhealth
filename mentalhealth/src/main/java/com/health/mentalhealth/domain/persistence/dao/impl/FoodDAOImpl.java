@@ -13,6 +13,8 @@ public class FoodDAOImpl implements IFoodDAO {
     @Autowired
     private FoodRepository foodRepository;
 
+    //repository method implementation to dao interface
+
     @Override
     public Optional<Food> findById(long id) {
         return foodRepository.findById(id);

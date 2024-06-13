@@ -15,6 +15,7 @@ public class UserDAOImpl implements IUserDAO {
     @Autowired
     private UserRepository userRepository;
 
+    //repository method implementation to dao interface
 
     @Override
     public Optional<UserEntity> findById(long id) {

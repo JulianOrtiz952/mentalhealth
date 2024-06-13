@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CalendarDTO {
 
-    private long id;
+    //Calendar data transfer object to frontend
     private int year;
     private int month;
     private int day;

@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder
 public class ErrorDTO {
 
+    //Error data transfer object to handleError and exceptions
     private String code;
     private String message;
 

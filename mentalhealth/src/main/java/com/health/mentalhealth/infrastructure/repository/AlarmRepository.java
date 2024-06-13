@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface AlarmRepository extends CrudRepository<Alarms, Long> {
 
     @Query("SELECT r FROM Alarms r WHERE r.day = :day AND r.time = :time")
-    Optional<Alarms> findAlarmByDayAndTime(@Param("day") String day, @Param("time") double time);
+    Optional<Alarms> findAlarmByDayAndTime(@Param("day") int day, @Param("time") double time);
 
 }

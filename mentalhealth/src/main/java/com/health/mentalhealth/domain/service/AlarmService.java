@@ -1,5 +1,6 @@
 package com.health.mentalhealth.domain.service;
 
+import com.health.mentalhealth.application.dto.AlarmDTO;
 import com.health.mentalhealth.application.exception.NotFoundedException;
 import com.health.mentalhealth.application.exception.RequestException;
 import com.health.mentalhealth.domain.persistence.dao.idao.IAlarmDAO;
@@ -16,30 +17,30 @@ public class AlarmService {
     @Autowired
     private IAlarmDAO alarmDAO;
 
+    //DTO have a lombok annotation 'builder', is used from send only necessary info
 
-    public Alarms createAlarm(Alarms alarms) {
-        // Implementación del método
-        if(alarmDAO.findAlarmByDayAndTime(String.valueOf(alarms.getDay()), alarms.getTime()).isPresent()) throw new RequestException("401", "alarm already exist");
+    public AlarmDTO createAlarm(Alarms alarms) {
+        if(alarmDAO.findAlarmByDayAndTime(alarms.getDay(), alarms.getTime()).isPresent()) throw new RequestException("401", "alarm already exist");
         alarmDAO.save(alarms);
-        return alarms;
+        return AlarmDTO.builder().name(alarms.getName()).day(alarms.getDay()).time(alarms.getTime()).build();
     }
 
 
     public void deleteAlarmById(Long id) {
-        // Implementación del método
         if(alarmDAO.findById(id).isEmpty()) throw new NotFoundedException();
         alarmDAO.deleteById(id);
     }
 
 
-    public Optional<Alarms> getAlarmById(Long id) {
-        // Implementación del método
+    public AlarmDTO getAlarmById(Long id) {
         if(alarmDAO.findById(id).isEmpty()) throw new NotFoundedException();
-        return alarmDAO.findById(id);
+        Alarms alarm = alarmDAO.findById(id).get();
+        return AlarmDTO.builder().name(alarm.getName()).day(alarm.getDay()).time(alarm.getTime()).build();
     }
 
+    //stream, map and toList allow to create a DTO list
 
-    public List<Alarms> getAllAlarms() {
-        return (List<Alarms>) alarmDAO.findAll();
+    public List<AlarmDTO> getAllAlarms() {
+        return alarmDAO.findAll().stream().map(alarms -> AlarmDTO.builder().name(alarms.getName()).day(alarms.getDay()).time(alarms.getTime()).build()).toList();
     }
 }

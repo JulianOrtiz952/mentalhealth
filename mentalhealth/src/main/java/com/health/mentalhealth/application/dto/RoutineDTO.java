@@ -11,12 +11,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class RoutineDTO {
 
+    //Routine data transfer object to frontend
     private Long id;
 
     //Day is a String how monday...
     private String day;
 
-    //Hour double need be rounded
+
     private double hour;
 
     //name and info about routine

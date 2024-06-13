@@ -29,7 +29,7 @@ public class Alarms {
     @JsonIgnore
     private UserEntity user;
 
-    // Agregado setter público para la propiedad 'user'
+    // add public setter to 'user' property
     @JsonProperty("user") // Anotación de Jackson para deserialización
     public void setUser(UserEntity user) {
         this.user = user;

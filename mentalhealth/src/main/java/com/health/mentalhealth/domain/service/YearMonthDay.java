@@ -4,6 +4,8 @@ import com.health.mentalhealth.application.exception.EmptyException;
 
 public class YearMonthDay {
 
+    //class to validate a date
+
     public boolean validation(int year, int month, int day){
         if(day == 0 || month == 0) throw new EmptyException("day or month");
         if (month < 1 || month > 12) {

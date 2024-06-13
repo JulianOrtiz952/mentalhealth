@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface IFoodDAO {
 
+    //interface data access object with methods
+
     Optional<Food> findById(long id);
 
     List<Food> findAll();

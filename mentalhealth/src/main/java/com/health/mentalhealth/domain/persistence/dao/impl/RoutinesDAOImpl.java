@@ -15,6 +15,8 @@ public class RoutinesDAOImpl implements IRoutinesDAO {
     @Autowired
     private RoutinesRepository routinesRepository;
 
+    //repository method implementation to dao interface
+
     @Override
     public Optional<Routines> findById(long id) {
         return routinesRepository.findById(id);

@@ -15,6 +15,8 @@ public class AlarmDAOImpl implements IAlarmDAO {
     @Autowired
     private AlarmRepository alarmRepository;
 
+    //repository method implementation to dao interface
+
     @Override
     public Optional<Alarms> findById(long id) {
         return alarmRepository.findById(id);
@@ -36,7 +38,7 @@ public class AlarmDAOImpl implements IAlarmDAO {
     }
 
     @Override
-    public Optional<Alarms> findAlarmByDayAndTime(String day, double time) {
+    public Optional<Alarms> findAlarmByDayAndTime(int day, double time) {
         return alarmRepository.findAlarmByDayAndTime(day, time);
     }
 }

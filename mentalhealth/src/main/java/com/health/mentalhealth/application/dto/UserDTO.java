@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserDTO {
 
+    //User data transfer object to frontend
     private long id;
     private String name;
     private String email;
